@@ -1,5 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 
+const IMG_BASE = 'https://goldgrahak-odisha.netlify.app/images';
+
 // Gold rates data
 const goldRates = [
   { label: '24K Gold', rate: '₹13,061/g', change: '▲ +1.25%' },
@@ -49,7 +51,7 @@ const testimonials = [
   },
 ];
 
-// Steps data
+// Steps data with images
 const steps = [
   {
     num: 1,
@@ -57,18 +59,24 @@ const steps = [
     checks: ['Call, WhatsApp or fill the form', 'Choose a time that suits you', 'Zero booking charge'],
     desc: 'Tell us the approximate weight & type of gold. We schedule a certified expert at your convenience.',
     phase: 'doorstep',
+    img: `${IMG_BASE}/step-book-visit.webp`,
+    alt: 'Book a free gold valuation visit',
   },
   {
     num: 2,
     title: 'Keep Your ID Proof Ready',
     checks: ['Aadhaar Card (photo + address)', 'OR Passport for fast-track KYC', 'Any govt. photo ID works'],
     desc: 'A valid photo ID and address proof is required for a safe, compliant transaction. Your Aadhaar covers both.',
+    img: `${IMG_BASE}/step-id-proof.webp`,
+    alt: 'Keep your ID proof ready',
   },
   {
     num: 3,
     title: 'Our Expert Arrives',
     checks: ['Uniformed, verified professional', 'Carries certified testing kit', 'On time, every time'],
     desc: 'Prefer to visit us instead? Walk into your nearest Gold Grahak branch — same process, same rate.',
+    img: `${IMG_BASE}/step-expert-visit.webp`,
+    alt: 'Certified gold expert arrives at your doorstep',
   },
   {
     num: 4,
@@ -76,24 +84,32 @@ const steps = [
     checks: ['Tamper-proof testing', 'BIS-certified karat machine', 'Accurate, non-destructive valuation'],
     desc: "Your gold's purity is measured in front of you. Your ornaments are never harmed during testing.",
     phase: 'both',
+    img: `${IMG_BASE}/step-purity-check.webp`,
+    alt: 'Certified electronic gold purity check',
   },
   {
     num: 5,
     title: 'Check Live Gold Rate',
     checks: ['Transparent, market-linked quote', 'Up to 97% of live rate', 'Same rate at every branch'],
     desc: "Based on the purity check we give you a clear quotation calculated on today's live gold rate.",
+    img: `${IMG_BASE}/step-live-rate.webp`,
+    alt: 'Transparent live gold rate quotation',
   },
   {
     num: 6,
     title: 'Quick KYC Verification',
     checks: ['Photo ID & address proof', 'Verification call for your safety', 'Done in minutes'],
     desc: 'A simple KYC check keeps every transaction safe and fraud-free for you and your family.',
+    img: `${IMG_BASE}/step-kyc.webp`,
+    alt: 'Quick and safe KYC verification',
   },
   {
     num: 7,
     title: 'Instant Payment + Bonus',
     checks: ['Cash, UPI or instant bank transfer', 'Confirm money before we leave', 'Extra bonus with original bill'],
     desc: 'Accept the offer and get paid on the spot. Carry your original purchase bill to earn a better rate.',
+    img: `${IMG_BASE}/step-payment.webp`,
+    alt: 'Instant payment to your bank account',
   },
 ];
 
@@ -147,25 +163,28 @@ const branches = [
   },
 ];
 
-// Blog data
+// Blog data with images
 const blogs = [
   {
     tag: 'Selling Gold',
     read: '5 min read',
     title: '6 Things to Check Before Selling Your Gold',
     desc: 'A simple checklist to make sure you get the best value when you sell.',
+    img: `${IMG_BASE}/blog-checklist.webp`,
   },
   {
     tag: 'Tax & Rules',
     read: '5 min read',
     title: 'Is Cash for Gold Taxable in India?',
     desc: 'Understand the income-tax rules when selling personal gold jewellery.',
+    img: `${IMG_BASE}/blog-tax.webp`,
   },
   {
     tag: 'KYC',
     read: '5 min read',
     title: 'What KYC Documents Do You Need to Sell Gold?',
     desc: 'The exact ID and address proofs required for a smooth transaction.',
+    img: `${IMG_BASE}/blog-kyc.webp`,
   },
 ];
 
@@ -178,7 +197,7 @@ const WhatsAppIcon = () => (
 
 // Star SVG
 const StarIcon = () => (
-  <svg viewBox="0 0 24 24" fill="currentColor" className="w-[18px] h-[18px] text-[#d4a843]">
+  <svg viewBox="0 0 24 24" fill="currentColor" className="w-[18px] h-[18px] text-[#c9a227]">
     <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
   </svg>
 );
@@ -321,6 +340,14 @@ export default function App() {
 
           {/* Lead Form */}
           <div className="hero-lead-card fade-up fade-up-delay-1">
+            <div className="hero-lead-illus">
+              <img
+                src={`${IMG_BASE}/hero-expert.webp`}
+                alt="Gold Grahak expert"
+                width="360"
+                height="200"
+              />
+            </div>
             <h2 className="hero-lead-title">Looking for Gold Buyers in Odisha?</h2>
             <p className="hero-lead-sub">Get a free call back & live valuation in minutes.</p>
             <form
@@ -458,9 +485,7 @@ export default function App() {
                   <p className="step-v2-desc">{step.desc}</p>
                 </div>
                 <div className="step-v2-media">
-                  <div className="w-full h-full flex items-center justify-center text-[#b8922e] text-lg font-semibold bg-gradient-to-br from-[#f8f4ee] to-[#efe8d8]">
-                    Step {step.num}
-                  </div>
+                  <img className="step-img" src={step.img} alt={step.alt} loading="lazy" />
                 </div>
               </div>
             </div>
@@ -766,9 +791,11 @@ export default function App() {
               <p className="refer-tnc">*Terms & conditions apply</p>
             </div>
             <div className="refer-right fade-up fade-up-delay-1">
-              <div className="refer-img bg-gradient-to-br from-[#f8f4ee] to-[#efe8d8] flex items-center justify-center text-[#b8922e] text-xl font-bold rounded-[20px]">
-                Refer & Earn
-              </div>
+              <img
+                className="refer-img"
+                src={`${IMG_BASE}/refer-earn.webp`}
+                alt="Refer a friend and earn rewards"
+              />
             </div>
           </div>
         </div>
@@ -785,9 +812,7 @@ export default function App() {
           <div className="blogs-v2-grid">
             {blogs.map((blog, idx) => (
               <a key={idx} className={`blog-v2-card fade-up ${idx > 0 ? `fade-up-delay-${idx}` : ''}`} href="#">
-                <div className="blog-v2-img bg-gradient-to-br from-[#f0e6d3] to-[#e8dcc5] flex items-center justify-center text-[#b8922e] font-semibold">
-                  {blog.tag}
-                </div>
+                <img className="blog-v2-img" src={blog.img} alt={blog.title} loading="lazy" />
                 <div className="blog-v2-body">
                   <span className="blog-v2-tag">{blog.tag}</span>
                   <span className="blog-v2-read">{blog.read}</span>
@@ -881,7 +906,7 @@ export default function App() {
           <div className="footer-grid">
             <div>
               <h4>
-                Gold<span className="text-[#d4a843]">Grahak</span>
+                Gold<span className="text-[#c9a227]">Grahak</span>
               </h4>
               <p className="text-sm leading-relaxed mb-4">
                 Odisha's most trusted doorstep gold buying service. Certified experts, transparent rates, and instant payment — all at your convenience.
